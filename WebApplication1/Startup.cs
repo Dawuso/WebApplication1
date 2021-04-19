@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Data;
 
 namespace WebApplication1
 {
@@ -24,6 +26,7 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ProductContext>(options => { options.UseSqlServer(Configuration.GetConnectionString("DB")); });
             services.AddRazorPages();
             services.AddTransient<JsonFileProductService>();
         }
